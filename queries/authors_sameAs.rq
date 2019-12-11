@@ -1,0 +1,19 @@
+
+PREFIX drcs: <http://www.nie.org/ontology/drcs#> 
+PREFIX human: <http://www.nie.org/ontology/human#> 
+PREFIX dc11: <http://purl.org/dc/elements/1.1/>
+PREFIX schema: <http://schema.org/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT ?drcs_iri ?drcsName ?drcsSameAsScta ?sctaTitle
+WHERE {
+  ?drcs_iri a drcs:Person.
+  ?drcs_iri owl:sameAs ?drcsSameAsScta .
+  ?drcs_iri human:hasName ?drcsName .
+   
+  SERVICE <https://sparql.scta.info/ds/query> { 
+    ?drcsSameAsScta dc11:title ?sctaTitle .
+    } .
+  }
+
+LIMIT 25

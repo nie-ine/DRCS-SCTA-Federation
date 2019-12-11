@@ -1,0 +1,17 @@
+PREFIX drcs: <http://www.nie.org/ontology/drcs#> 
+PREFIX human: <http://www.nie.org/ontology/human#> 
+PREFIX dc11: <http://purl.org/dc/elements/1.1/>
+PREFIX schema: <http://schema.org/>
+
+SELECT  ?name ?drcs_iri ?scta_iri
+WHERE {
+  ?drcs_iri a drcs:Person.
+  ?drcs_iri human:hasName ?name .
+   
+  SERVICE <https://sparql.scta.info/ds/query> { 
+    	?scta_iri a <http://scta.info/resource/person> .
+        ?scta_iri dc11:title ?name .
+  }
+}
+
+LIMIT 25
