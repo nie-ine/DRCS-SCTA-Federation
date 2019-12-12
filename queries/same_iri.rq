@@ -1,0 +1,16 @@
+PREFIX drcs: <http://www.nie.org/ontology/drcs#> 
+PREFIX human: <http://www.nie.org/ontology/human#> 
+PREFIX dc11: <http://purl.org/dc/elements/1.1/>
+PREFIX schema: <http://schema.org/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX : <#>
+
+SELECT 
+?name ?sctaDateOfBirth ?sctaDateOfDeath WHERE { <http://scta.info/resource/Wodeham> human:hasName ?name .
+  <http://scta.info/resource/Wodeham>  owl:sameAs <#> .
+  SERVICE <https://sparql.scta.info/ds/query> { 
+    OPTIONAL {   <#> <http://scta.info/property/dateOfBirth> ?sctaDateOfBirth .
+                 <#> <http://scta.info/property/dateOfDeath> ?sctaDateOfDeath .
+                } .
+    } .
+  }
